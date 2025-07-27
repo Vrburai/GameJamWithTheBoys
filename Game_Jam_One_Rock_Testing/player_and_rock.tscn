@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dylhh7bjekia6"]
+
+[ext_resource type="Script" path="res://Character_Brain.gd" id="1_50our"]
+[ext_resource type="Texture2D" uid="uid://bcsyp41dnibic" path="res://Mage.png" id="2_da2a1"]
+[ext_resource type="Script" path="res://Rock.gd" id="3_em4n0"]
+[ext_resource type="Texture2D" uid="uid://0pobw4eyjllw" path="res://Assets_And_Placeholders/RockProto1616.png" id="4_2ikfh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ln63"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wbf7d"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6pvhw"]
+
+[node name="Player_and_Rock" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(3, 0)
+collision_layer = 48
+script = ExtResource("1_50our")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_8ln63")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(-3.8147e-06, -5)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_da2a1")
+
+[node name="Rock" type="CharacterBody2D" parent="."]
+position = Vector2(39, -56)
+collision_layer = 161
+collision_mask = 17
+script = ExtResource("3_em4n0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock"]
+shape = SubResource("CircleShape2D_wbf7d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rock"]
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("4_2ikfh")
+
+[node name="Area2D" type="Area2D" parent="Rock"]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Rock/Area2D"]
+shape = SubResource("CircleShape2D_6pvhw")

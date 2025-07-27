@@ -1,0 +1,121 @@
+[gd_scene load_steps=8 format=3 uid="uid://3g3cir3yc257"]
+
+[ext_resource type="Texture2D" uid="uid://cfygvvw1kdq6c" path="res://Dirt_PH_1.png" id="1_bndco"]
+[ext_resource type="Script" path="res://Button_.gd" id="2_kic4g"]
+[ext_resource type="Texture2D" uid="uid://bkjtyvdanif5g" path="res://icon.svg" id="3_frcvq"]
+[ext_resource type="Script" path="res://DeathPlane.gd" id="4_cfllf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rwjr"]
+size = Vector2(3.2, 3.2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drht7"]
+size = Vector2(34, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lr5b"]
+size = Vector2(1473, 218)
+
+[node name="Testbed_2" type="Node2D"]
+position = Vector2(0, -4)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-1, 112)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_1rwjr")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+texture = ExtResource("1_bndco")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-96, 76)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_1rwjr")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+texture = ExtResource("1_bndco")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(63, 75)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_1rwjr")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
+texture = ExtResource("1_bndco")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(31, 95)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_1rwjr")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D5"]
+texture = ExtResource("1_bndco")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(-65, 95)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_1rwjr")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D6"]
+texture = ExtResource("1_bndco")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-33, 112)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_1rwjr")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_bndco")
+
+[node name="Button_" type="StaticBody2D" parent="."]
+position = Vector2(62, 55)
+collision_layer = 8
+collision_mask = 32
+script = ExtResource("2_kic4g")
+
+[node name="Detector" type="Area2D" parent="Button_"]
+collision_layer = 8
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button_/Detector"]
+shape = SubResource("RectangleShape2D_drht7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Button_"]
+scale = Vector2(0.265625, 0.0703124)
+texture = ExtResource("3_frcvq")
+
+[node name="DeathPlane" type="StaticBody2D" parent="."]
+position = Vector2(-251, 260)
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("4_cfllf")
+
+[node name="Area2D" type="Area2D" parent="DeathPlane"]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathPlane/Area2D"]
+position = Vector2(289.5, 139)
+shape = SubResource("RectangleShape2D_6lr5b")
+
+[connection signal="area_entered" from="Button_/Detector" to="Button_" method="_on_detector_area_entered"]
+[connection signal="area_exited" from="Button_/Detector" to="Button_" method="_on_detector_area_exited"]
+[connection signal="body_entered" from="Button_/Detector" to="Button_" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Button_/Detector" to="Button_" method="_on_detector_body_exited"]
+[connection signal="body_entered" from="DeathPlane/Area2D" to="DeathPlane" method="_on_area_2d_body_entered"]
