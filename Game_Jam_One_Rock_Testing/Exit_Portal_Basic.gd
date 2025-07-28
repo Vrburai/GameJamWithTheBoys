@@ -8,7 +8,8 @@ extends StaticBody2D
 ## End portals, go to next level by default
 
 ##state tracking vars
-var active: bool = false;
+var Player_Active: bool = false;
+var Rock_Active: bool = false;
 
 signal next_level;
 
@@ -18,23 +19,40 @@ func _process(_delta):
 	##get_node("/root/LevelControlSystem").next_level.connect(Callable(self, "connected_signal"));
 
 func check_state_change():
-	if active:
+	if Player_Active and Rock_Active:
 		emit_signal("next_level");
 
 ##collision handlers, don't change
 func _on_area_2d_body_entered(body):
-	active = true;
+	Player_Active = true;
 	check_state_change();
 
 func _on_detector_body_exited(body):
-	active = false;
+	Player_Active = false;
 	check_state_change();
 
 func _on_detector_area_entered(area):
-	active = true;
+	Player_Active = true;
 	check_state_change();
 
 func _on_detector_area_exited(area):
-	active = false;
+	Player_Active = false;
 	check_state_change();
 
+
+##collision handlers, don't change
+func _on_area_2d_body_entered_rock(body):
+	Rock_Active = true;
+	check_state_change();
+
+func _on_detector_body_exited_rock(body):
+	Rock_Active = false;
+	check_state_change();
+
+func _on_detector_area_entered_rock(area):
+	Rock_Active = true;
+	check_state_change();
+
+func _on_detector_area_exited_rock(area):
+	Rock_Active = false;
+	check_state_change();

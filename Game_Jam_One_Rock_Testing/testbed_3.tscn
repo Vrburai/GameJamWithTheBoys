@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhynuf0lbf7al"]
+
+[ext_resource type="PackedScene" uid="uid://3g3cir3yc257" path="res://testbed_2.tscn" id="1_tk1w7"]
+
+[node name="Testbed_3" instance=ExtResource("1_tk1w7")]
+
+[node name="StaticBody2D3" parent="." index="1"]
+position = Vector2(31, 34)
+
+[node name="StaticBody2D4" parent="." index="2"]
+position = Vector2(32, 65)

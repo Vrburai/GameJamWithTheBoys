@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnu3ggxgiwkkh"]
+[gd_scene load_steps=9 format=3 uid="uid://cnu3ggxgiwkkh"]
 
 [ext_resource type="PackedScene" uid="uid://bdhd32wywc6h7" path="res://testbed_1.tscn" id="1_oq4pl"]
 [ext_resource type="Script" path="res://level_control_system.gd" id="2_81wb3"]
 [ext_resource type="PackedScene" uid="uid://3g3cir3yc257" path="res://testbed_2.tscn" id="2_d6w3s"]
 [ext_resource type="PackedScene" uid="uid://dylhh7bjekia6" path="res://player_and_rock.tscn" id="3_2ekjr"]
-[ext_resource type="PackedScene" path="res://button_default.tscn" id="6_bnd1h"]
+[ext_resource type="PackedScene" uid="uid://bhynuf0lbf7al" path="res://testbed_3.tscn" id="4_rqmpn"]
+[ext_resource type="PackedScene" uid="uid://c4nhbncujuvdn" path="res://button_default.tscn" id="6_bnd1h"]
 [ext_resource type="PackedScene" uid="uid://csuy2p15xks70" path="res://Exit_Portal_Basic.tscn" id="7_tf5m4"]
+[ext_resource type="PackedScene" uid="uid://de8k4absa6nnf" path="res://tile_level_test.tscn" id="8_0h0fx"]
 
 [node name="Level_Control_System" type="Node2D"]
 script = ExtResource("2_81wb3")
@@ -14,12 +16,18 @@ script = ExtResource("2_81wb3")
 
 [node name="Testbed_2" parent="." instance=ExtResource("2_d6w3s")]
 
+[node name="Testbed_3" parent="." instance=ExtResource("4_rqmpn")]
+
 [node name="Player_and_Rock" parent="." instance=ExtResource("3_2ekjr")]
-position = Vector2(21, -1)
 
 [node name="Exit_Portal" parent="." instance=ExtResource("7_tf5m4")]
 position = Vector2(82, 14)
 
 [node name="Button_Default" parent="." instance=ExtResource("6_bnd1h")]
 
+[node name="Tile_Level_Test" parent="." instance=ExtResource("8_0h0fx")]
+
+[connection signal="restart_level" from="Player_and_Rock/Player" to="." method="_on_restart_level"]
 [connection signal="next_level" from="Exit_Portal" to="." method="_on_button__next_level"]
+
+[editable path="Player_and_Rock"]
