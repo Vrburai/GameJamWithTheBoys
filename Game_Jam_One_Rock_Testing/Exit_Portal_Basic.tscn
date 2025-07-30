@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://csuy2p15xks70"]
 
 [ext_resource type="Script" path="res://Exit_Portal_Basic.gd" id="1_bn614"]
-[ext_resource type="Texture2D" uid="uid://by8xkr4qgpqd1" path="res://Assets_And_Placeholders/MapTileset.png" id="2_o1ys2"]
+[ext_resource type="Texture2D" uid="uid://bkjtyvdanif5g" path="res://icon.svg" id="2_p3rsw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_drht7"]
-size = Vector2(18.5, 34.0372)
+size = Vector2(34, 8)
 
 [node name="Exit_Portal_Basic" type="StaticBody2D"]
 z_index = 10
-position = Vector2(2, -0.999985)
+position = Vector2(45, 96)
 scale = Vector2(1, 0.961039)
 collision_layer = 8
 collision_mask = 32
@@ -19,8 +19,6 @@ collision_layer = 8
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Detector"]
-position = Vector2(-1.25, -7.9544)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_drht7")
 
 [node name="Rock_Detector" type="Area2D" parent="."]
@@ -28,16 +26,11 @@ collision_layer = 8
 collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rock_Detector"]
-position = Vector2(-1.5, -6.98313)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_drht7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.5, -7.2838)
-scale = Vector2(1.0625, 1.04054)
-texture = ExtResource("2_o1ys2")
-region_enabled = true
-region_rect = Rect2(112, 80, 16, 32)
+scale = Vector2(0.265625, 0.0703124)
+texture = ExtResource("2_p3rsw")
 
 [connection signal="area_entered" from="Player_Detector" to="." method="_on_detector_area_entered"]
 [connection signal="area_exited" from="Player_Detector" to="." method="_on_detector_area_exited"]
