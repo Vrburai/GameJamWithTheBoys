@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ssg2ey3l6rlp"]
+[gd_scene load_steps=10 format=3 uid="uid://ssg2ey3l6rlp"]
 
 [ext_resource type="Texture2D" uid="uid://dut2lfhce5agb" path="res://Assets_And_Placeholders/BDragonSmolAnimated.png" id="1_3e0sa"]
+[ext_resource type="Script" path="res://enemy_1.gd" id="1_mkrr8"]
 [ext_resource type="PackedScene" uid="uid://dsq6su2vgr1l1" path="res://hurtbox.tscn" id="2_nq7t6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u4wcn"]
@@ -43,6 +44,7 @@ animations = [{
 size = Vector2(12, 9)
 
 [node name="Enemy1" type="Node2D"]
+script = ExtResource("1_mkrr8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gq3t3")
