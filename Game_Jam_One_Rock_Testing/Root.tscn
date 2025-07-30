@@ -60,7 +60,7 @@ position = Vector2(82, 14)
 [node name="Tile_Level_Test" parent="." instance=ExtResource("8_0h0fx")]
 
 [node name="Enemy1" parent="." instance=ExtResource("10_nfnfs")]
-position = Vector2(100, 55)
+position = Vector2(304, 39)
 
 [connection signal="restart_level" from="Player_and_Rock/Player" to="." method="_on_restart_level"]
 [connection signal="next_level" from="Exit_Portal" to="." method="_on_button__next_level"]
