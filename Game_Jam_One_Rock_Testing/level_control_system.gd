@@ -11,7 +11,7 @@ func _ready():
 	
 	##List of all levels in order, must update or will not be included properly
 	##All must be in tree
-	levels = [get_node("Tile_Level_Test"), get_node("Testbed_1"), get_node("Testbed_2"), get_node("Testbed_3")];
+	levels = [get_node("Tile_Level_Test"), get_node("Tile_Level_Parent")];
 	
 	##can change, scene to be played initially
 	opening_scene = levels[0];
