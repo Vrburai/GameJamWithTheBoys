@@ -13,7 +13,6 @@ var Rock_Active: bool = false;
 
 signal next_level;
 
-
 func _process(_delta):
 	pass
 	##check_state_change();
@@ -21,7 +20,6 @@ func _process(_delta):
 
 func check_state_change():
 	if Player_Active and Rock_Active:
-		print("Next level called");
 		emit_signal("next_level");
 
 ##collision handlers, don't change
