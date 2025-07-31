@@ -1,0 +1,74 @@
+[gd_scene load_steps=14 format=3 uid="uid://cnu3ggxgiwkkh"]
+
+[ext_resource type="PackedScene" uid="uid://bdhd32wywc6h7" path="res://testbed_1.tscn" id="1_oq4pl"]
+[ext_resource type="Script" path="res://level_control_system.gd" id="2_81wb3"]
+[ext_resource type="PackedScene" uid="uid://3g3cir3yc257" path="res://testbed_2.tscn" id="2_d6w3s"]
+[ext_resource type="PackedScene" uid="uid://dylhh7bjekia6" path="res://player_and_rock.tscn" id="3_2ekjr"]
+[ext_resource type="PackedScene" uid="uid://bhynuf0lbf7al" path="res://testbed_3.tscn" id="4_rqmpn"]
+[ext_resource type="Texture2D" uid="uid://dmrnn1jxvdpu4" path="res://Assets_And_Placeholders/MageIdleAnim.png" id="6_635i7"]
+[ext_resource type="PackedScene" uid="uid://c4nhbncujuvdn" path="res://button_default.tscn" id="6_bnd1h"]
+[ext_resource type="PackedScene" uid="uid://csuy2p15xks70" path="res://Exit_Portal_Basic.tscn" id="7_tf5m4"]
+[ext_resource type="PackedScene" uid="uid://de8k4absa6nnf" path="res://tile_level_test.tscn" id="8_0h0fx"]
+[ext_resource type="PackedScene" uid="uid://ssg2ey3l6rlp" path="res://enemy_1.tscn" id="10_nfnfs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_focjm"]
+atlas = ExtResource("6_635i7")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr4mk"]
+atlas = ExtResource("6_635i7")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rdqdp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_focjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr4mk")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}]
+
+[node name="Level_Control_System" type="Node2D"]
+script = ExtResource("2_81wb3")
+
+[node name="Testbed_1" parent="." instance=ExtResource("1_oq4pl")]
+
+[node name="Testbed_2" parent="." instance=ExtResource("2_d6w3s")]
+
+[node name="Testbed_3" parent="." instance=ExtResource("4_rqmpn")]
+
+[node name="Player_and_Rock" parent="." instance=ExtResource("3_2ekjr")]
+
+[node name="Player" parent="Player_and_Rock" index="0"]
+position = Vector2(-221, 45)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player_and_Rock/Player" index="2"]
+sprite_frames = SubResource("SpriteFrames_rdqdp")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Sprite2D" parent="Player_and_Rock/Player" index="3"]
+visible = false
+
+[node name="Rock" parent="Player_and_Rock" index="1"]
+position = Vector2(-165, 39)
+
+[node name="Exit_Portal" parent="." instance=ExtResource("7_tf5m4")]
+position = Vector2(120, -173)
+
+[node name="Button_Default" parent="." instance=ExtResource("6_bnd1h")]
+
+[node name="Tile_Level_Test" parent="." instance=ExtResource("8_0h0fx")]
+
+[node name="Enemy1" parent="." instance=ExtResource("10_nfnfs")]
+position = Vector2(206, 55)
+
+[connection signal="restart_level" from="Player_and_Rock/Player" to="." method="_on_restart_level"]
+[connection signal="next_level" from="Exit_Portal" to="." method="_on_button__next_level"]
+
+[editable path="Player_and_Rock"]
