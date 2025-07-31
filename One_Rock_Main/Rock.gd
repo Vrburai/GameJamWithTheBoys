@@ -62,7 +62,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Size_Down"):
 		decrease_size();
 		
-	
+	if $CollisionShape2D.disabled == true:
+		## reset collision shape after flight glitch prevention
+		$CollisionShape2D.disabled = false;
 
 
 
@@ -70,21 +72,10 @@ func _physics_process(delta):
 func _ready():
 	## used to force player snap points to correct distance
 	set_size(size);
-#	InputMap.add_action("Size_Up");
-#	var size_Up_Event = InputEventKey.new();
-#	size_Up_Event.scancode = KEY_E;
-#	InputMap.action_add_event("Size_Up", size_Up_Event);
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-"""
-func _process(delta):
-	print("hi");
-	scale = Vector2(2, 2); 
-	collider.scale = Vector2(2, 2);
-"""
-
 
 func _on_player_equip():
+	##Stops flight glitch
+	$CollisionShape2D.disabled = true;
 	equiped = true;
 
 
