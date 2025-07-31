@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6l05en4rqkr7"]
+
+[ext_resource type="Script" path="res://Rectangle.gd" id="1_1kyjv"]
+[ext_resource type="Texture2D" uid="uid://1s70om70kydl" path="res://Assets_And_Placeholders/Rectangle.png" id="1_rfvkc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwrf8"]
+size = Vector2(14, 14)
+
+[node name="Rectangle" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_1kyjv")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_rfvkc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_iwrf8")
