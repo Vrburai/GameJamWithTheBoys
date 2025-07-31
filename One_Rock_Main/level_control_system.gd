@@ -5,13 +5,15 @@ var levels;
 var opening_scene;
 var cur_level;
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Player = get_node("Player_and_Rock");
 	
 	##List of all levels in order, must update or will not be included properly
 	##All must be in tree
-	levels = [get_node("Tile_Level_Test"), get_node("Testbed_1"), get_node("Testbed_2"), get_node("Testbed_3")];
+	levels = [get_node("Tile_Level_Test"), get_node("Tile_Level_Parent")];
 	
 	##can change, scene to be played initially
 	opening_scene = levels[0];
@@ -39,6 +41,7 @@ func reset_player():
 	get_node("Player_and_Rock/Rock").position = Vector2(10, 0);
 
 func next_level():
+	print("Next Level Recieved");
 	## Clear old level
 	remove_child(levels[cur_level]);
 	## keep count up to date
